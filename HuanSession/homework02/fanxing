@@ -1,0 +1,113 @@
+package com.fanxing;
+
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.TreeSet;
+
+class Man   implements Comparable<Man>
+{
+	private String name ;
+	Man (String name )
+	{
+		this.name=name ;
+		
+	}
+	public String getName ()
+	{
+		return name ;
+	}
+	@Override
+	public String toString() {
+		return "Man [name=" + name + "]";
+	}
+	
+	@Override
+	public int compareTo(Man o) {
+		// TODO 自动生成的方法存根
+		return this.name.compareTo(o.getName());
+	}
+	
+	
+}
+
+
+class Rayer extends  Man  
+{
+	private String name ;
+	Rayer (String name )
+	{
+		super (name );
+	}
+	
+//	public String toString() {
+//		return "Rayer [name=" + name + "]";
+//	}
+}
+
+class MyCom01 implements Comparator<Man>
+{
+
+	@Override
+	public int compare(Man o1, Man o2) {
+		// TODO 自动生成的方法存根
+		return o1.getName().compareTo(o2.getName());
+	}
+	
+}
+
+
+class MyCom02 implements Comparator<Rayer>
+{
+
+	@Override
+	public int compare(Rayer o1, Rayer o2) {
+		// TODO 自动生成的方法存根
+		return o1.getName().compareTo(o2.getName());
+	}
+	
+}
+
+public class FanXingDemo04 {
+
+	public static void main(String[] args) {
+		// TODO 自动生成的方法存根
+TreeSet <Man> tree =new TreeSet <Man> (  );
+		
+		tree.add(new Man("asd6"));
+		tree.add(new Man("asd3"));
+		tree.add(new Man("asd5"));
+		tree.add(new Man("asd2"));
+		
+		Iterator< Man> it=tree.iterator();
+		while (it.hasNext())
+		{
+			System.out.println(it.next().getName());
+		}
+		
+		
+TreeSet <Rayer> tree1 =new TreeSet <Rayer> (  );
+		
+tree1.add(new Rayer("xasd6"));
+tree1.add(new Rayer("xasd3"));
+tree1.add(new Rayer("xasd5"));
+tree1.add(new Rayer("xasd2"));
+		
+		Iterator< Rayer> it1=tree1.iterator();
+		while (it1.hasNext())
+		{
+			System.out.println(it1.next().getName());
+		}
+		
+		show01(tree);
+		show01(tree1);
+		
+	}
+	public static void show01 ( TreeSet <? extends Man> a1)
+	{
+		Iterator<? extends Man > it=a1.iterator();
+		while (it.hasNext())
+		{
+			System.out.println(it.next().toString());
+		}
+	}
+}
